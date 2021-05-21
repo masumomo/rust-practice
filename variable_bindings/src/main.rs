@@ -65,4 +65,17 @@ fn main() {
 
     println!("another binding: {}", another_binding);
 
+
+
+    // ********Freeze**********
+    let mut mutable_integer = 7i32;
+    {
+        // Shadowing
+        let mutable_integer = mutable_integer;
+        // Error!
+        // mutable_integer = 40;
+        println!("{}", mutable_integer);
+    }
+    mutable_integer = 30; // It's OK
+    println!("{}", mutable_integer);
 }
