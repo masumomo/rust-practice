@@ -1,4 +1,6 @@
 use std::convert::{From,Into, TryFrom,TryInto};
+use std::fmt;
+
 // ********From and Into**********
 #[derive(Debug)]
 struct Number {
@@ -32,6 +34,19 @@ impl TryFrom<i32> for EvenNumber {
        }
     }
 }
+
+// ********To and from Strings**********
+struct Circle {
+    radius: i32
+}
+
+// it automagically provides ToString and also allows printing the type as discussed in the section on print!
+impl fmt::Display for Circle {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.radius)
+    }
+}
+
 
 fn main() {
     println!("Hello, Conversion!");
@@ -68,4 +83,13 @@ fn main() {
 
 
     // ********To and from Strings**********
+    let c = Circle{radius:20};
+    println!("{}", c.to_string());
+
+    // let parsed: i32 = "a".parse().unwrap(); // Return None
+    let parsed: i32 = "5".parse().unwrap(); // Return None
+    let turbo_parsed = "10".parse::<i32>().unwrap();
+
+    let sum = parsed + turbo_parsed;
+    println!("Sum: {}",sum)
 }
