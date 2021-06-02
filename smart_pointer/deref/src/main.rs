@@ -9,7 +9,7 @@ impl<T> MyBox<T> {
 }
 
 impl<T> Deref for MyBox<T> {
-    type Target = T;
+    type Target = T;　// associated type for the Deref trait to use
 
     fn deref(&self) -> &T {
         &self.0
@@ -25,5 +25,5 @@ fn main() {
     assert_eq!(5, x);
     assert_eq!(5, *y);
     assert_eq!(5, *y2);
-    assert_eq!(5, *y3);
+    assert_eq!(5, *y3); // *(y.deref()) happens
 }
